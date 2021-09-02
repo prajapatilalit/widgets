@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Search = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState("programming");
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -23,6 +23,17 @@ const Search = () => {
     }
   }, [text]);
 
+  const renderListOfItem = results.map((result) => {
+    return (
+      <div className="item" key={result.pageid}>
+        <div className="content">
+          <div className="header">{result.title}</div>
+          <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div>
       <div className="ui form">
@@ -37,6 +48,7 @@ const Search = () => {
           />
         </div>
       </div>
+      <div className="ui celled list">{renderListOfItem}</div>
     </div>
   );
 };
