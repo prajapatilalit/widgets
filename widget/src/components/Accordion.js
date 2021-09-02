@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Accordion = ({ items }) => {
   const [activIndex, setActiveIndex] = useState(null);
 
-  const onActiveIndex = (index) => {
+  const onTitleHandleClick = (index) => {
     setActiveIndex(index);
     // console.log("active index is", index);
   };
@@ -11,25 +11,20 @@ const Accordion = ({ items }) => {
   const renderAccordionList = items.map((item, index) => {
     return (
       <React.Fragment key={item.title}>
-        <div
-          className="ui styled accordion"
-          onClick={() => onActiveIndex(index)}
-        >
-          <div className="active title">
-            <i className="dropdown icon"></i>
-            {item.title}
-          </div>
-          <div className="active content">
-            <p>{item.content}</p>
-          </div>
+        <div className="active title" onClick={() => onTitleHandleClick(index)}>
+          <i className="dropdown icon"></i>
+          {item.title}
+        </div>
+        <div className="active content">
+          <p>{item.content}</p>
         </div>
       </React.Fragment>
     );
   });
   return (
-    <div>
+    <div className="ui styled accordion">
       {renderAccordionList}
-      {activIndex}
+      <h1>{activIndex}</h1>
     </div>
   );
 };
