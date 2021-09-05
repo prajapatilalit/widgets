@@ -37,10 +37,14 @@ const options = [
 ];
 
 const App = () => {
-  const [select, setSelect] = useState(options[0]);
+  const [selected, setSelected] = useState(options[0]);
   return (
     <div>
-      <Dropdown select={select} onSelectChange={setSelect} options={options} />
+      <Dropdown
+        selected={selected}
+        onSelectedChange={setSelected}
+        options={options}
+      />
       {/* <Search /> */}
       {/* <Accordion items={items} /> */}
     </div>
