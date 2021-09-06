@@ -4,6 +4,7 @@ import Translate from "./Translate";
 import Accordion from "./Accordion";
 import Search from "./Search";
 import Route from "./Route";
+import Header from "./Header";
 
 const items = [
   {
@@ -39,13 +40,14 @@ const options = [
 ];
 
 const App = () => {
-  const [selected, setSelected] = useState(items[0]);
+  const [selected, setSelected] = useState(options[0]);
   return (
     <div>
+      <Header />
       <Route path="/">
         <Accordion items={items} />
       </Route>
-      <Route path="/lists">
+      <Route path="/list">
         <Search />
       </Route>
       <Route path="/dropdown">
