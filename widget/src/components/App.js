@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 import Translate from "./Translate";
-// import Accordion from "./Accordion";
-// import Search from "./Search";
+import Accordion from "./Accordion";
+import Search from "./Search";
+import Route from "./Route";
 
 const items = [
   {
@@ -38,11 +39,26 @@ const options = [
 ];
 
 const App = () => {
+  const [selected, setSelected] = useState(items[0]);
   return (
     <div>
-      <Translate />
-      {/* <Search /> */}
-      {/* <Accordion items={items} /> */}
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/lists">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          label="Select a Language"
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };
