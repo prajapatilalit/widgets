@@ -5,13 +5,16 @@ const Accordion = ({ items }) => {
 
   const onTitleHandleClick = (index) => {
     setActiveIndex(index);
-    // console.log("active index is", index);
   };
 
   const renderAccordionList = items.map((item, index) => {
+    const active = index === activIndex ? "active" : "";
     return (
       <React.Fragment key={item.title}>
-        <div className="active title" onClick={() => onTitleHandleClick(index)}>
+        <div
+          className={`title ${active}`}
+          onClick={() => onTitleHandleClick(index)}
+        >
           <i className="dropdown icon"></i>
           {item.title}
         </div>
@@ -21,12 +24,7 @@ const Accordion = ({ items }) => {
       </React.Fragment>
     );
   });
-  return (
-    <div className="ui styled accordion">
-      {renderAccordionList}
-      <h1>{activIndex}</h1>
-    </div>
-  );
+  return <div className="ui styled accordion">{renderAccordionList}</div>;
 };
 
 export default Accordion;
