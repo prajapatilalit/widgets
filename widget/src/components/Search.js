@@ -14,7 +14,7 @@ const Search = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  });
+  }, [text]);
 
   useEffect(() => {
     const searchTerm = async () => {
@@ -29,7 +29,7 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    if (text) {
+    if (debouncedTerm) {
       searchTerm();
     }
   }, [debouncedTerm]);
